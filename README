@@ -1,0 +1,8 @@
+Flask-microarray-gcode
+
+This is a tool for designing microarray fabrication processes using basic gantry CNC gcode syntax. One can create and edit objects (ie., arrays, slides, wash stations, source plates, points) on the workspace (ie., gantry deck) and refer to this objects in assembling robotic methods. Afterwards, a python script is generated that outputs gcode translated into absolute positions that refer to these objects. 
+
+Flask-microarray-gcode is built using Flask (http://flask.pocoo.org/) which is python microframework, that can run on macs, windows and linux machines. The data objects are formatted using JSON. The graphical front end is based on Processong javascript (http://processingjs.org/)
+
+
+
