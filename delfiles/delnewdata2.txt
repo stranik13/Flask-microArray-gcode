@@ -1,0 +1,2 @@
+<plx>1000</plx><ply>500</ply>
+<phx>100</phx><phy>200</phy><tnum>1</tnum><tx>2</tx><ty>5</ty><reft>1</reft>
