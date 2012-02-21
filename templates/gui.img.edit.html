@@ -1,0 +1,47 @@
+{% extends "guilayout.html" %}
+{% block body %}
+
+{%if erro=='y'%}
+
+<b><font color=red>This filename already exists, please go back and try again</font><>/b>
+
+{% else %}
+
+<b>Configuration:</b> <font color=red>{{dat['file']}}</font>
+
+<form action=menu method=POST>
+<input type=submit value='Manage configurations' name='but'> | <input type=submit value='Delete' name='but'>
+</form>
+<p>
+<hr>
+<p>
+
+<form action=modplot method=POST>
+<table>
+<tr>
+<td><b>Objects: </b></td>
+<td><input type=submit value='Plot Area' name='but'></td>
+<td><input type=submit value='Plot Head' name='but'></td>
+<td><input type=submit value='New Object' name='but'></td>
+{% if mod=='y'%}
+<td><input type=submit value='Modify Object' name='but'></td>
+{%endif%}
+{% if mod=='y'%}
+<td><input type=submit value='Assemble Gcode' name='but'></td>
+{%endif%}
+</tr>
+</table>
+</form>
+<p>
+<hr>
+<table>
+<tr><td>
+
+{% include "gui.img.edit.menu.html" %}
+{%endif%}
+
+
+
+
+{% endblock %}
+

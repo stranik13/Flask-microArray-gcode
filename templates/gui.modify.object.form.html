@@ -1,0 +1,175 @@
+<style type="text/css">
+* { font-family: Verdana; font-size: 96%; }
+label { width: 10em; float: left; }
+label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+p { clear: both; }
+.submit { margin-left: 12em; }
+em { font-weight: bold; padding-right: 1em; vertical-align: top; }
+</style>
+
+
+<!--MICROARRAY-->
+{% if confdat['objlist'][objnumber]['typ'] == 'microarray' %}
+<b>Microarray</b> 
+<form action=microarrayobj method=POST>
+<table border=1 cellpadding=10><tr><td valign=top>
+<input type=hidden name="objnumber" value={{objnumber}}>
+<input type=hidden name="modify" value="yes">
+<b><u>Name:</u> </b><input type=text name="trgpname" value={{confdat['objlist'][objnumber]['name']}}></div><p>
+<p>
+
+<p>
+<fieldset><legend><b>Location</b></legend>
+<b>X: </b><input type=text name="trgpx" size=6 value={{confdat['objlist'][objnumber]['x']}} ><br>
+<b>Y: </b><input type=text name="trgpy" size=6 value={{confdat['objlist'][objnumber]['y']}} ><br>
+<b>Z: </b><input type=text name="trgpy" size=6 value={{confdat['objlist'][objnumber]['z']}} ><br>
+</fieldset>
+<p>
+<fieldset><legend><b>Dimension</b></legend>
+<b>Dim X: </b><input type=text name="dimx" size=6 value={{confdat['objlist'][objnumber]['dimx']}} ><br>
+<b>Dim Y: </b><input type=text name="dimy" size=6 value={{confdat['objlist'][objnumber]['dimy']}} ><br>
+</fieldset>
+<p>
+</td><td valign=top>
+<fieldset><legend><b>Number - Rows / Columns</b></legend>
+<b>Row: </b><input type=text name="trgprow" size=6 value={{confdat['objlist'][objnumber]['trgprow']}} ><br>
+<b>Spacing: </b><input type=text name="trgprowsp" size=6 value={{confdat['objlist'][objnumber]['trgprowsp']}} ><br>
+<b>Column: </b><input type=text name="trgpcol" size=6 value={{confdat['objlist'][objnumber]['trgpcol']}} ><br>
+<b>Spacing: </b><input type=text name="trgpcolsp" size=6 value={{confdat['objlist'][objnumber]['trgpcolsp']}} ><br>
+</fieldset>
+<p>
+<fieldset><legend><b>Margins</b></legend>
+<b>Left: </b><input type=text name="mrglft" size=6 value={{confdat['objlist'][objnumber]['mrglft']}} ><br>
+<b>Right: </b><input type=text name="mrgrt" size=6 value={{confdat['objlist'][objnumber]['mrgrt']}} ><br>
+<b>Top: </b><input type=text name="mrgtp" size=6 value={{confdat['objlist'][objnumber]['mrgtp']}} ><br>
+<b>Bottom: </b><input type=text name="mrgbt" size=6 value={{confdat['objlist'][objnumber]['mrgbt']}} ><br>
+</fieldset>
+<p>
+</td>
+<td valign=top>
+<fieldset><legend><b>Array Blocks</b></legend>
+<b>Block Rows + Columns:</b><br>
+<b>Row: </b><input type=text name="blrow" size=6 value={{confdat['objlist'][objnumber]['blrow']}} ><br>
+<b>Spacing: </b><input type=text name="blrowsp" size=6 value={{confdat['objlist'][objnumber]['blrowsp']}} ><br>
+<b>Column: </b><input type=text name="blcol" size=6 value={{confdat['objlist'][objnumber]['blcol']}} ><br>
+<b>Spacing: </b><input type=text name="blcolsp" size=6 value={{confdat['objlist'][objnumber]['blcolsp']}} ><br>
+</fieldset>
+<p>
+<fieldset><legend><b>Array Spots</b></legend>
+<b>Row: </b><input type=text name="sprow" size=6 value={{confdat['objlist'][objnumber]['sprow']}} ><br>
+<b>Spacing: </b><input type=text name="sprowsp" size=6 value={{confdat['objlist'][objnumber]['sprowsp']}} ><br>
+<b>Column: </b><input type=text name="spcol" size=6 value={{confdat['objlist'][objnumber]['spcol']}} ><br>
+<b>Spacing: </b><input type=text name="spcolsp" size=6 value={{confdat['objlist'][objnumber]['spcolsp']}} ><br>
+</fieldset>
+<p>
+</td>
+<td valign=top><input type=submit name='subval' value='submit'>
+<p>
+<input type=submit name='subval' value='delete'></td>
+</tr></table>
+</form>
+{% endif %}
+<!--END MICROARRAY-->
+
+<!--BEGIN MICROWELL-->
+{% if confdat['objlist'][objnumber]['typ'] == 'microwell' %}
+<b>Microwell</b> 
+<form action=microwellobj method=POST>
+<table border=1 cellpadding=10><tr><td valign=top>
+<input type=hidden name="objnumber" value={{objnumber}}>
+<input type=hidden name="modify" value="yes">
+<b><u>Name:</u> </b><input type=text name="trgpname" value={{confdat['objlist'][objnumber]['name']}}></div><p>
+<p>
+<input type=hidden name="typ" value="microwell">Microwell
+<fieldset><legend><b>Location</b></legend>
+<b>X: </b><input type=text size=6 name="trgpx" value={{confdat['objlist'][objnumber]['x']}}></b>
+<b>Y: </b><input type=text size=6 name="trgpy" value={{confdat['objlist'][objnumber]['y']}}> </b>
+<b>Z: </b><input type=text name="trgpy" size=6 value={{confdat['objlist'][objnumber]['z']}} ><br>
+</fieldset>
+<p>
+<fieldset><legend><b>Dimension</b></legend>
+<b>Dim X: </b><input type=text size=6 name="dimx" value={{confdat['objlist'][objnumber]['dimx']}} ></b>
+<b>Dim Y: </b><input type=text size=6 name="dimy" value={{confdat['objlist'][objnumber]['dimy']}} ></b>
+</fieldset><p>
+<fieldset><legend><b>Well Number</b></legend>
+<b>Orientation: </b> 
+{% if confdat['objlist'][objnumber]['orient']=='row' %}
+<b>Row</b> <input type=radio name="orient" value="row" checked>
+<b>Column</b> <input type=radio name="orient" value="column"></b><br>
+{% else %}
+<input type=radio name="orient" value="row">
+<b>Column</b> <input type=radio name="orient" value="column" checked></b><br>
+{% endif %}
+
+<b>Row: </b><input type=text  size=6 name="wllrow" value={{confdat['objlist'][objnumber]['wllrow']}} ></b><br>
+<b>Spacing: </b><input type=text size=6 name="wllrowsp" value={{confdat['objlist'][objnumber]['wllrowsp']}} ></b><br>
+<b>Column: </b><input type=text size=6 name="wllcol" value={{confdat['objlist'][objnumber]['wllcol']}} ></b><br>
+<b>Spacing: </b><input type=text size=6 name="wllcolsp" value={{confdat['objlist'][objnumber]['wllcolsp']}} ></b><br>
+</fieldset><p>
+</td>
+<td valign=top><input type=submit name='subval' value='submit'>
+<p>
+<input type=submit name='subval' value='delete'></td>
+</tr></table>
+</form>
+{% endif %}
+<!--END MICROWELL-->
+
+<!--BEGIN WASH-->
+{% if confdat['objlist'][objnumber]['typ'] == 'wash' %}
+<b>Wash</b> 
+<form action=washobj method=POST>
+<table border=1 cellpadding=10><tr><td valign=top>
+<input type=hidden name="objnumber" value={{objnumber}}>
+<input type=hidden name="modify" value="yes">
+<b><u>Name:</u> </b><input type=text name="trgpname" value={{confdat['objlist'][objnumber]['name']}}></div><p>
+<p>
+<fieldset><legend><b>Location</b></legend>
+<b>X: </b><input type=text name="trgpx" size=6 value={{confdat['objlist'][objnumber]['x']}}></b>
+<b>Y: </b><input type=text name="trgpy" size=6 value={{confdat['objlist'][objnumber]['y']}}></b>
+<b>Z: </b><input type=text name="trgpy" size=6 value={{confdat['objlist'][objnumber]['z']}} ><br>
+</fieldset>
+<p>
+<fieldset><legend><b>Dimension</b></legend>
+<b>Dim X: </b><input type=text name="dimx" size=6 value={{confdat['objlist'][objnumber]['dimx']}}></b>
+<b>Dim Y: </b><input type=text name="dimy" size=6 value={{confdat['objlist'][objnumber]['dimy']}}></b>
+</fieldset><p>
+<fieldset><legend><b>Wash Steps</b></legend>
+<b>Flow rate: </b><input type=text name="flrt" size=6 value={{confdat['objlist'][objnumber]['flrt']}}></b><br>
+<b>Wash time: </b><input type=text name="wshtm" size=6 value={{confdat['objlist'][objnumber]['wshtm']}}></b><br>
+</fieldset><p>
+</td>
+<td><input type=submit name='subval' value='submit'></td>
+</tr></table>
+</form>
+{% endif %}
+<!--END WASH-->
+
+
+<!--BEGIN POINT-->
+{% if confdat['objlist'][objnumber]['typ'] == 'point' %}
+<form action=pointobj method=POST>
+<input type=hidden name="typ" value="point">Point
+<table border=0 cellpadding=10><tr><td valign=top>
+<fieldset>
+<input type=hidden name="modify" value="yes">
+<b><u>Name:</u> </b><input type=text name="trgpname" value={{confdat['objlist'][objnumber]['name']}}>
+</fieldset><p>
+<fieldset><legend><b>Location</b></legend>
+<b>X: </b><input type=text name="trgpx" size=6 value={{confdat['objlist'][objnumber]['x']}}></b>
+<b>Y: </b><input type=text name="trgpy" size=6 value={{confdat['objlist'][objnumber]['y']}}></b>
+<b>Z: </b><input type=text name="trgpy" size=6 value={{confdat['objlist'][objnumber]['z']}} ><br>
+</fieldset>
+<p>
+<fieldset><legend><b>Dimension</b></legend>
+<b>Dim X: </b><input type=text name="dimx" size=6 value={{confdat['objlist'][objnumber]['dimx']}}></b>
+<b>Dim Y: </b><input type=text name="dimy" size=6 value={{confdat['objlist'][objnumber]['dimy']}}></b>
+</fieldset><p>
+</td>
+<td><input type=submit name='subval' value='submit'></td>
+</tr></table>
+</form>
+{% endif %}
+<!--END POINT-->
+
+

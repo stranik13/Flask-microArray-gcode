@@ -1,0 +1,68 @@
+{% extends "guilayout.html" %}
+{% block body %}
+
+<legend><b>Flask-uArray-gCode Assembler Interface </b></legend>
+{% if condat['init'] == '1' %}
+<font color=red> Initialized </font>
+{% endif %}
+
+<table cellpadding=0 border=0><tr valign=top>
+<td align=center> 
+<fieldset>
+<legend><b>Selected configuration: </b></left><font color=red>{{ condat['file'] }}</font></legend>
+<p><p>
+<fieldset>
+<legend><b>Select configuration file to load: </b></legend>
+<form action="confsel" method="POST">
+<select name='filen'>
+{% for fl in condat['files'] %}
+{% if fl == 'gcode.formatter.py'%}
+{% else %}
+{% if fl == condat['file'] %}
+<option selected>{{ fl }}</option>
+{% else %}
+<option>{{ fl }}</option>
+{% endif %}
+{% endif %}
+{% endfor %}
+</select>
+<input type=submit value='Load' name='act'>
+<input type=submit value='Download' name='act'></form>
+</fieldset>
+
+<p>
+<fieldset>
+<legend><b>Create new configuration:  </b></legend>
+<script type="text/javascript">
+function validateForm()
+{
+var x=document.forms["confnew"]["filen"].value;
+if (x==null || x=="")
+  {
+  alert("Please enter a filename");
+  return false;
+  }
+}
+</script>
+
+<form name="confnew" action="confnew" method=POST onsubmit="return validateForm()">
+<input type=text name='filen'>
+<input type=submit value='Submit'><br>
+</form>
+</fieldset>
+<p>
+
+<!--Upload configuration file-->
+<fieldset>
+<legend><b>Upload new configuration file:</b></legend>
+<form action="gfile" method=POST enctype=multipart/form-data>
+<input type="file" name="datafile" size="40">
+<br>
+<div align=left><input type="submit" value="Upload"></div>
+</form>
+</fieldset>
+<p>
+</td></tr></table>
+
+{% endblock %}
+

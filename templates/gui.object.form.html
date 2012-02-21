@@ -1,0 +1,236 @@
+<style type="text/css">
+* { font-family: Verdana; font-size: 96%; }
+label { width: 10em; float: left; }
+label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+p { clear: both; }
+.submit { margin-left: 12em; }
+em { font-weight: bold; padding-right: 1em; vertical-align: top; }
+</style>
+
+<p>
+<fieldset><legend><b>Type</b></legend>
+<input type="button" value="Microarray" class="codeButtonA" />
+<input type="button" value="Microwell" class="codeButtonB" />
+<input type="button" value="Wash" class="codeButtonC" />
+<input type="button" value="Point" class="codeButtonD" />
+</div>
+</fieldset>
+<p>
+
+
+<!-- Form types -->
+<!-- Case Microarray -->
+<div class="codeA">
+<form action=microarrayobj method=POST>
+<table border=0 cellpadding=10><tr><td valign=top>
+<td>
+<fieldset>
+<legend><b>New Object Properties</b></legend>
+<input type=hidden name="modify" value="no">
+<b><u>Name:</u> </b><input type=text name="trgpname" value="name">
+</fieldset><p>
+<input type=hidden name="typ" value="microarray">Microarray
+<fieldset><legend><b>Location</b></legend>
+<b>X: </b><input type=text name="trgpx" value="10" size=6></b>
+<b>Y: </b><input type=text name="trgpy" value="10" size=6></b>
+<b>Z: </b><input type=text name="trgpz" value="1" size=6></b>
+</fieldset>
+<p>
+<fieldset><legend><b>Dimension</b></legend>
+<b>Dim X: </b><input type=text name="dimx" value="25" size=6></b>
+<b>Dim Y: </b><input type=text name="dimy" value="75" size=6></b>
+</fieldset><p>
+
+<fieldset><legend><b>Number - Rows / Columns</b></legend>
+<b>Row: </b><input type=text name="trgprow" value="1" size=6></b><br>
+<b>Spacing: </b><input type=text name="trgprowsp" value="0" size=6></b><br>
+<b>Column: </b><input type=text name="trgpcol" value="1" size=6></b><br>
+<b>Spacing: </b><input type=text name="trgpcolsp" value="0" size=6></b><br>
+</fieldset><p>
+
+</td><td>
+<fieldset><legend><b>Margins</b></legend>
+<b>Left: </b><input type=text name="mrglft" value="0" size=6></b><br>
+<b>Right: </b><input type=text name="mrgrt" value="0" size=6></b><br>
+<b>Top: </b><input type=text name="mrgtp" value="0" size=6></b><br>
+<b>Bottom: </b><input type=text name="mrgbt" value="0" size=6></b><br>
+</fieldset>
+<p>
+<fieldset><legend><b>Array Blocks</b></legend>
+<b>Row: </b><input type=text name="blrow" value="1" size=6></b><br>
+<b>Spacing: </b><input type=text name="blrowsp" value="1" size=6></b><br>
+<b>Column: </b><input type=text name="blcol" value="1" size=6></b><br>
+<b>Spacing: </b><input type=text name="blcolsp" value="1" size=6></b><br>
+</fieldset>
+<p>
+<fieldset><legend><b>Array Spots</b></legend>
+<b>Row: </b><input type=text name="sprow" value="1" size=6></b><br>
+<b>Spacing: </b><input type=text name="sprowsp" value="1" size=6></b><br>
+<b>Column: </b><input type=text name="spcol" value="1" size=6></b><br>
+<b>Spacing: </b><input type=text name="spcolsp" value="1" size=6></b><br>
+</fieldset><p>
+</td>
+<td><input type=submit name='subval' value='submit'></td>
+</tr></table>
+</form>
+</div>
+
+
+<!-- Case Microwell -->
+<div class="codeB">
+<form action=microwellobj method=POST>
+<table border=0 cellpadding=10><tr><td valign=top>
+<fieldset>
+<legend><b>New Object Properties</b></legend>
+<input type=hidden name="modify" value="no">
+<b><u>Name:</u> </b><input type=text name="trgpname" value="name">
+</fieldset><p>
+<input type=hidden name="typ" value="microwell">Microwell
+<fieldset><legend><b>Location</b></legend>
+<b>X: </b><input type=text name="trgpx" value="10" size=6></b>
+<b>Y: </b><input type=text name="trgpy" value="10" size=6></b>
+<b>Z: </b><input type=text name="trgpz" value="1" size=6></b>
+</fieldset>
+<p>
+<fieldset><legend><b>Dimension</b></legend>
+<b>Dim X: </b><input type=text name="dimx" value="125" size=6></b>
+<b>Dim Y: </b><input type=text name="dimy" value="75" size=6></b>
+</fieldset><p>
+<fieldset><legend><b>Well Number</b></legend>
+<b>Orientation: </b> <b>Row</b> <input type=radio name="orient" value="row">
+<b>Column</b> <input type=radio name="orient" value="column" checked></b><br>
+<b>Row: </b><input type=text name="wllrow" value="16" size=6></b><br>
+<b>Spacing: </b><input type=text name="wllrowsp" value="4.5" size=6></b><br>
+<b>Column: </b><input type=text name="wllcol" value="24" size=6></b><br>
+<b>Spacing: </b><input type=text name="wllcolsp" value="4.5" size=6></b><br>
+</fieldset><p>
+</td>
+<td><input type=submit name='subval' value='submit'></td>
+</tr></table>
+</form>
+</div>
+
+
+<!-- Case Wash -->
+<div class="codeC"><input type=hidden name="typ" value="wash">Wash
+<form action=washobj method=POST>
+<input type=hidden name="modify" value="no">
+<table border=0 cellpadding=10><tr><td valign=top>
+<fieldset>
+<legend><b>New Object Properties</b></legend>
+<input type=hidden name="modify" value="no">
+<b><u>Name:</u> </b><input type=text name="trgpname" value="name">
+</fieldset><p>
+<fieldset><legend><b>Location</b></legend>
+<b>X: </b><input type=text name="trgpx" value="10" size=6></b>
+<b>Y: </b><input type=text name="trgpy" value="10" size=6></b>
+<b>Z: </b><input type=text name="trgpz" value="1" size=6></b>
+</fieldset>
+<p>
+<fieldset><legend><b>Dimension</b></legend>
+<b>Dim X: </b><input type=text name="dimx" value="25" size=6></b>
+<b>Dim Y: </b><input type=text name="dimy" value="25" size=6></b>
+</fieldset><p>
+<fieldset><legend><b>Wash Steps</b></legend>
+<b>Flow rate: </b><input type=text name="flrt" value="2" size=6></b><br>
+<b>Wash time: </b><input type=text name="wshtm" value="30" size=6></b><br>
+</fieldset><p>
+</td>
+<td><input type=submit name='subval' value='submit'></td>
+</tr></table>
+</div>
+
+
+<!-- Case Point -->
+<div class="codeD"><input type=hidden name="typ" value="point">Point
+<form action=pointobj method=POST>
+<input type=hidden name="modify" value="no">
+<table border=0 cellpadding=10><tr><td valign=top>
+<fieldset>
+<legend><b>New Object Properties</b></legend>
+<input type=hidden name="modify" value="no">
+<b><u>Name:</u> </b><input type=text name="trgpname" value="name">
+</fieldset><p>
+<fieldset><legend><b>Location</b></legend>
+<b>X: </b><input type=text name="trgpx" value="10" size=6></b>
+<b>Y: </b><input type=text name="trgpy" value="10" size=6></b>
+<b>Z: </b><input type=text name="trgpz" value="1" size=6></b>
+</fieldset>
+<p>
+<fieldset><legend><b>Dimension</b></legend>
+<b>Dim X: </b><input type=text name="dimx" value="5" size=6></b>
+<b>Dim Y: </b><input type=text name="dimy" value="5" size=6></b>
+</fieldset><p>
+</td>
+<td><input type=submit name='subval' value='submit'></td>
+</tr></table>
+</div>
+
+<!-- End Form types -->
+
+<script>
+// JavaScript Document
+$(document).ready(function(){
+$("div.codeA").hide();
+$("div.codeB").hide();
+$("div.codeC").hide();
+$("div.codeD").hide();
+$("div.error").hide();
+
+
+
+//show code -- Point
+$("input.codeButtonA").click(function(){
+        $("div.codeA").show();
+        $("div.codeB").hide();
+        $("div.codeC").hide();
+        $("div.codeD").hide();
+        $("div.error").hide();
+        return false;
+});
+
+//show code -- Target
+$("input.codeButtonB").click(function(){
+        $("div.codeB").toggle();
+        $("div.codeA").hide();
+        $("div.codeC").hide();
+        $("div.codeD").hide();
+        $("div.error").hide();
+        return false;
+});
+
+//show code -- Target Group
+$("input.codeButtonC").click(function(){
+        $("div.codeC").toggle();
+        $("div.codeA").hide();
+        $("div.codeB").hide();
+        $("div.codeD").hide();
+        $("div.error").hide();
+        return false;
+});
+
+//show code -- Target Group
+$("input.codeButtonD").click(function(){
+        $("div.codeD").toggle();
+        $("div.codeA").hide();
+        $("div.codeB").hide();
+        $("div.codeC").hide();
+        $("div.error").hide();
+        return false;
+});
+
+
+
+
+
+
+});
+</script>
+
+
+
+
+
+
+
+

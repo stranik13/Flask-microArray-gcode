@@ -1,0 +1,73 @@
+<script type="application/processing">
+
+
+interface JavaScript {
+  void showXYCoordinates(int x, int y);
+}
+
+JavaScript javascript;
+
+void bindJavascript(JavaScript js) {
+  javascript = js; 
+}
+
+
+
+void setup(){
+ size(({{confdat['plothead']['x']}}*2), ({{confdat['plothead']['y']}}*2));
+ background(200);
+ PFont fontA = loadFont("Arial");
+ textFont(fontA, 15);
+ textAlign(CENTER);
+}
+
+void draw(){
+  plothead();
+}
+
+
+void plothead(){
+  //Plot head
+  stroke(12);
+  fill(204, 102, 0);
+  rect(({{confdat['plothead']['x']}}/2), ({{confdat['plothead']['y']}} / 2), {{confdat['plothead']['x']}}, {{confdat['plothead']['y']}});
+  //Tips
+  int a = 0;
+  for (int i = 0; i < ({{confdat['plothead']['tipx']}}); i = i+1) {
+  for (int j = 0; j < ({{confdat['plothead']['tipy']}}); j = j+1) {
+   a = a + 1;
+   noStroke();
+   if (a=={{confdat['plothead']['reftip']}}){ 	fill(104, 50, 25);     }
+   else {    	fill(0, 191, 255);   }
+   ellipse(({{confdat['plothead']['x']}}/2) - ({{confdat['plothead']['posx']}} + ({{confdat['plothead']['xsp']}} * i)), ({{confdat['plothead']['y']}}/2) + ({{confdat['plothead']['posy']}} + ({{confdat['plothead']['ysp']}} * j)), 3, 3);
+  }
+  }
+  stroke(12);
+  float ax = ({{confdat['plothead']['x']}}/2); 
+  float ay = ({{confdat['plothead']['y']}}/2);
+  float bx = ax - ({{confdat['plothead']['posx']}} + ({{confdat['plothead']['xsp']}} * {{confdat['plothead']['tipx']}}) + ({{confdat['plothead']['tipx']}} * 2));
+  float ex = ax;
+  float by = ay + ({{confdat['plothead']['posy']}} - ({{confdat['plothead']['ysp']}})*2);
+  float ey = by + ({{confdat['plothead']['ysp']}} * ({{confdat['plothead']['tipy']}}+3));
+  line(bx,by,ex,by);
+  line(bx,ey,ex,ey);
+  line(bx,by,bx,ey);
+  //Camera
+   noStroke();
+   fill(104, 202, 50); 
+   float camx = {{confdat['plothead']['camx']}};
+   float camy = {{confdat['plothead']['camy']}};
+   float camdiam = {{confdat['plothead']['camdiam']}};
+   ellipse(({{confdat['plothead']['x']}}/2) - camx, ({{confdat['plothead']['y']}}/2) + camy, (camdiam/2), (camdiam/2));
+  stroke(12);
+   bx = ax - (camx + (camdiam/2));
+   ex = ax;
+   by = ay + (camy - (camdiam/2));
+   ey = ay + (camy +(camdiam/2)); 
+  line(bx,by,ex,by);
+  line(bx,ey,ex,ey);
+  line(bx,by,bx,ey);
+}
+
+</script>
+

@@ -1,0 +1,15 @@
+<script type="application/processing">
+
+
+void setup(){
+ float x = (({{confdat['objlist'][objnumber]['spcol']}} + {{confdat['objlist'][objnumber]['spcolsp']}} + {{confdat['objlist'][objnumber]['blcolsp']}}) * ({{confdat['objlist'][objnumber]['blcol']}}))*10;
+ float y = (({{confdat['objlist'][objnumber]['sprow']}} + {{confdat['objlist'][objnumber]['sprowsp']}} + {{confdat['objlist'][objnumber]['blrowsp']}}) * ({{confdat['objlist'][objnumber]['blrow']}}))*10;
+ size(x, y);
+ background(200);
+
+}
+
+
+
+</script>
+

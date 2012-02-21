@@ -1,0 +1,159 @@
+<script type="application/processing">
+
+
+interface JavaScript {
+  void showXYCoordinates(int x, int y);
+}
+
+JavaScript javascript;
+
+void bindJavascript(JavaScript js) {
+  javascript = js; 
+}
+
+
+
+void setup(){
+ size({{confdat['deck']['plx']}}, {{confdat['deck']['ply']}});
+ background(200);
+ PFont fontA = loadFont("Arial");
+ textFont(fontA, 15);
+ textAlign(CENTER);
+ if ({{dat['disobjs']}} == 1){
+  writeFont();
+ }
+}
+
+void draw(){
+  targets();
+  if ({{dat['displothead']}} == 1){
+  plothead();
+  }
+}
+
+
+void writeFont(){
+ // Draw the letter to the screen
+ // Use fill() to change the value or color of the text  
+ fill(0);
+ //text("Plotter", ({{dat['pxpos']}}),({{dat['pypos']}}-5)); 
+ {% for a in confdat['objlist'] %}
+ text("{{a['name']}}", ({{a['x']}}),({{a['y']}}-3));
+ {% endfor %}
+
+}
+
+void targets(){
+  {% for a in confdat['objlist'] %}
+  fill(204, 202, 200);
+  stroke(0);
+  {% if a['typ'] == 'microarray' %}
+  for (int i = 0; i < ({{a['trgpcol']}}); i = i+1) {
+  for (int j = 0; j < ({{a['trgprow']}}); j = j+1) {
+   b = i;
+   float x = {{a['x']}} + (({{a['dimx']}}+{{a['trgpcolsp']}})+{{a['dimx']}} *(i-1));
+   float y = {{a['y']}} + (({{a['dimy']}}+{{a['trgprowsp']}})+{{a['dimy']}} *(j-1));
+   rect(x,y, {{a['dimx']}},{{a['dimy']}});
+   for (int k = 1; k <= ({{a['blcol']}}); k = k+1) {
+   for (int l = 1; l <= ({{a['blrow']}}); l = l+1) {
+    float bx = x + {{a['mrglft']}} + ({{a['blcolsp']}}* (k-1));
+    float by = y + {{a['mrgtp']}} + ({{a['blrowsp']}}* (l-1));
+   for (int m = 1; m <= ({{a['spcol']}}); m = m+1) {
+   for (int n = 1; n <= ({{a['sprow']}}); n = n+1) {
+    float sx = bx + ((m-1)*{{a['spcolsp']}});
+    float sy = by + ((n-1)*{{a['sprowsp']}});
+    ellipse(sx,sy,1,1);
+   }
+   }
+   }
+   }
+  }
+  }
+  {% elif a['typ'] == 'microwell' %}
+  for (int i = 1; i < ({{a['wllrow']}}+1); i = i+1) {
+  for (int j = 1; j < ({{a['wllcol']}}+1); j = j+1) {
+   int sr = i;
+   int sc = j;
+   //if you want to rotate the plate then you need to swap axis
+   {% if a['orient'] == 'column' %}
+   float y = {{a['y']}} + ({{a['wllrowsp']}} * (i-1));
+   float x = {{a['x']}} + ({{a['wllcolsp']}} * (j-1));
+   {% else %}
+   float x = {{a['x']}} + ({{a['wllrowsp']}} * (i-1));
+   float y = {{a['y']}} + ({{a['wllcolsp']}} * (j-1));
+   {% endif %}
+   fill(204, 202, 200);
+   stroke(0);
+   ellipse(x,y,2.5,2.5);
+  }
+  }
+
+  {% elif a['typ'] == 'wash' %}
+  float x = {{a['x']}};
+  float y = {{a['y']}};
+  rect(x,y,{{a['dimx']}},{{a['dimy']}});
+
+  {% elif a['typ'] == 'point' %}
+  float x = {{a['x']}};
+  float y = {{a['y']}};
+  rect(x,y,{{a['dimx']}},{{a['dimy']}});
+
+  {% endif %}
+  {% endfor %}
+
+}
+
+void plothead(){
+  stroke(12);
+  fill(204, 102, 0);
+  //rect(100,100,100,100);
+  rect({{dat['pxpos']}}, {{dat['pypos']}}, {{confdat['plothead']['x']}}, {{confdat['plothead']['y']}});
+  //Tips
+  int a = 0;
+  for (int i = 0; i < ({{confdat['plothead']['tipx']}}); i = i+1) {
+  for (int j = 0; j < ({{confdat['plothead']['tipy']}}); j = j+1) {
+   a = a + 1;
+   noStroke();
+   if (a=={{confdat['plothead']['reftip']}}){ 	fill(104, 50, 25);     }
+   else {    	fill(0, 191, 255);   }
+   ellipse(({{dat['pxpos']}}) - ({{confdat['plothead']['posx']}} + ({{confdat['plothead']['xsp']}} * i)), ({{dat['pypos']}}) + ({{confdat['plothead']['posy']}} + ({{confdat['plothead']['ysp']}} * j)), 3, 3);
+  }
+  }
+  stroke(12);
+  float ax = ({{dat['pxpos']}});
+  float ay = ({{dat['pypos']}});
+  float bx = ax - ({{confdat['plothead']['posx']}} + ({{confdat['plothead']['xsp']}} * {{confdat['plothead']['tipx']}}) + ({{confdat['plothead']['tipx']}} * 2));
+  float ex = ax;
+  float by = ay + ({{confdat['plothead']['posy']}} - ({{confdat['plothead']['ysp']}})*2);
+  float ey = by + ({{confdat['plothead']['ysp']}} * ({{confdat['plothead']['tipy']}}+3));
+  line(bx,by,ex,by);
+  line(bx,ey,ex,ey);
+  line(bx,by,bx,ey);
+
+  //Camera
+   noStroke();
+   fill(104, 202, 50); 
+   float camx = {{confdat['plothead']['camx']}};
+   float camy = {{confdat['plothead']['camy']}};
+   float camdiam = {{confdat['plothead']['camdiam']}};
+   ellipse(({{dat['pxpos']}}) - camx, ({{dat['pypos']}}) + camy, (camdiam/2), (camdiam/2));
+  stroke(12);
+   bx = ax - (camx + (camdiam/2));
+   ex = ax;
+   by = ay + (camy - (camdiam/2));
+   ey = ay + (camy +(camdiam/2)); 
+  line(bx,by,ex,by);
+  line(bx,ey,ex,ey);
+  line(bx,by,bx,ey);
+
+
+}
+
+
+void mouseMoved() {
+  if(javascript!=null){
+    javascript.showXYCoordinates(mouseX, mouseY); }
+}
+
+</script>
+

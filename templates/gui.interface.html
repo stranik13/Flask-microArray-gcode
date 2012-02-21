@@ -1,0 +1,77 @@
+
+<!-- from http://wsgiarea.pocoo.org/jinja/docs/parts.html -->
+<form action="svresp" method=POST>
+
+
+<table border=0 cellpadding=10><tr><td>
+<table><tr><td></td>
+<td><input type=submit value='Forward' name='but'></td></tr>
+<tr><td><input type=submit value='Left' name='but'></td>
+<td></td>
+<td><input type=submit value='Right' name='but'></td></tr>
+<td></td>
+<td><input type=submit value='Backward' name='but'></td>
+<td></td></tr>
+</table>
+</td><td>
+<table>
+<tr><td><input type=submit value='Up' name='but'></td></tr>
+<tr><td><input type=submit value='Down' name='but'></td></tr>
+
+</table>
+
+
+</td><td>
+<b>Step Width:</b><p>
+<select name='sel'>
+  <option value="0.1">0.1</option>
+  <option value="0.5">0.5</option>
+  <option value="1">1</option>
+  <option value="5">5</option>
+  <option value="10">10</option>
+  <option value="20">20</option>
+</select>
+
+</tr></table>
+</font>
+</form>
+<p>
+<!-- homing -->
+<hr>
+<font face=arial>
+<b>Homing </b>
+</font>
+<form action="homing" method=POST>
+<table><tr>
+<td><input type=submit value='X' name='ho'></td>
+<td><input type=submit value='Y' name='ho'></td>
+<td><input type=submit value='Z' name='ho'></td></tr>
+</table>
+</form>
+<p>
+<hr>
+<p>
+<!-- wash -->
+<font face=arial>
+<b>Wash </b>
+</font>
+<form action="svresp" method=POST>
+<table><tr>
+<td><input type=submit value='Wash' name='ho'></td>
+<td>	
+<fieldset><legend><b>Wash Settings</b></legend>
+<b>Wash time: </b><input type=text name="washtm" value="30" size=6></br>
+<b>Dry time: </b><input type=text name="drytm" value="1" size=6></b>
+</fieldset>
+</td>
+</table>
+</form>
+
+
+<p>
+<hr>
+<p>
+
+
+
+
